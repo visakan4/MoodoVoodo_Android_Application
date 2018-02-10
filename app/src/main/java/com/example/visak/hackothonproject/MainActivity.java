@@ -11,7 +11,7 @@ public class MainActivity extends AppCompatActivity {
      *
      * Activity which will decide how the user is feeling???
      *
-     *
+     * Note: Initial commit ESK
      *
      * 
      *
