@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
@@ -28,4 +28,6 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile group: 'cz.msebera.android' , name: 'httpclient', version: '4.4.1.1'
     testCompile 'junit:junit:4.12'
+
+    compile 'com.github.dimorinny:floating-text-button:0.0.4'
 }
