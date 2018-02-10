@@ -11,7 +11,7 @@
         android:id="@+id/cameraIntent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="What us to detect the emotion?"
+        android:text="Want us to detect the emotion?"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
