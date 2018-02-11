@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     public ArrayList<String> sortHashMap(){
         ArrayList<String> sortedEmotionsList = new ArrayList<>();
         List<Double> emotionvalues = new ArrayList<>(emotionsResult.values());
-        List<String> emotions = new ArrayList<>(emotionsResult.keySet());
+
         Collections.sort(emotionvalues);
         for (String key: emotionsResult.keySet()) {
             for (Double value: emotionvalues){
