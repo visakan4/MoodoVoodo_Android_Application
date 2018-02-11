@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -182,8 +183,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         cameraIntent = (Button)findViewById(R.id.cameraIntent);
         userInputIntent = (Button)findViewById(R.id.userIntent);
+
 
         cameraIntent.setOnClickListener(new View.OnClickListener() {
             @Override

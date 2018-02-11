@@ -31,8 +31,8 @@ public class ConfirmationActivity extends AppCompatActivity {
             btnNegative.setVisibility(View.GONE);
             btnPositive.setVisibility(View.GONE);
             //Code to play music
-            MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.happy);
-            mediaPlayer.start();
+//            MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.happy);
+//            mediaPlayer.start();
         }
 
         if ((userResponse == 1)){
