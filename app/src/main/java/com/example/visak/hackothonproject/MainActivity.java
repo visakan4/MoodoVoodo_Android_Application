@@ -2,6 +2,7 @@ package com.example.visak.hackothonproject;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -10,6 +11,8 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -194,6 +197,14 @@ public class MainActivity extends AppCompatActivity {
         cameraIntent = (Button)findViewById(R.id.cameraIntent);
         userInputIntent = (Button)findViewById(R.id.userIntent);
 
+        if (ContextCompat.checkSelfPermission(getApplicationContext(),Manifest.permission.CAMERA)== PackageManager.PERMISSION_DENIED){
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CAMERA},100);
+        }
+
+        if (ContextCompat.checkSelfPermission(getApplicationContext(),Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED){
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},0x3);
+        }
+
         cameraIntent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -209,5 +220,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 }

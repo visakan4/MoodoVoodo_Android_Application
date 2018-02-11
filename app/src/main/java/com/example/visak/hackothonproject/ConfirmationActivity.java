@@ -1,6 +1,7 @@
 package com.example.visak.hackothonproject;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +19,9 @@ public class ConfirmationActivity extends AppCompatActivity {
     public static int userResponse;
     public static TextView tvQuest;
     public static Button btnPositive, btnNegative;
+    MediaPlayer mediaPlayer;
+    Button videoHappyButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +30,8 @@ public class ConfirmationActivity extends AppCompatActivity {
         tvQuest = (TextView) findViewById(R.id.tvQuestion);
         btnPositive = (Button) findViewById(R.id.btnPositive);
         btnNegative = (Button) findViewById(R.id.btnNegative);
+        videoHappyButton = (Button)findViewById(R.id.happyVideo);
+        videoHappyButton.setVisibility(View.INVISIBLE);
         if (intent.getExtras().getInt("flowValue")==1){
             userResponse = intent.getExtras().getInt("emotion");
             Log.d("EmotionValue",""+userResponse);
@@ -40,8 +46,9 @@ public class ConfirmationActivity extends AppCompatActivity {
             btnNegative.setVisibility(View.GONE);
             btnPositive.setVisibility(View.GONE);
             //Code to play music
-            MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.happy);
+            mediaPlayer= MediaPlayer.create(ConfirmationActivity.this, R.raw.happy);
             mediaPlayer.start();
+            videoHappyButton.setVisibility(View.VISIBLE);
         }
 
         if ((userResponse == 1)){
@@ -59,6 +66,17 @@ public class ConfirmationActivity extends AppCompatActivity {
             btnPositive.setText("Sure. I could use some help!");
 
         }
+
+        videoHappyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mediaPlayer.isPlaying()){
+                    mediaPlayer.stop();
+                }
+                Intent intent = new Intent(ConfirmationActivity.this,PlayerActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void clkPositive(View view) {
