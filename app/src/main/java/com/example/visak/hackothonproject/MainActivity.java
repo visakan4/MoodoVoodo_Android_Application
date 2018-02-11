@@ -47,25 +47,30 @@ public class MainActivity extends AppCompatActivity {
     String result;
     String parsedResult;
     HashMap<String,Double> emotionsResult = new HashMap<>();
+    HashMap<String,Integer> emotionsValue = new HashMap<>();
+    ArrayList<Integer> sortedEmotionsList = new ArrayList<>();
 
-    public ArrayList<String> sortHashMap(){
-        ArrayList<String> sortedEmotionsList = new ArrayList<>();
-        List<Double> emotionvalues = new ArrayList<>(emotionsResult.values());
 
-        Collections.sort(emotionvalues);
-        for (String key: emotionsResult.keySet()) {
-            for (Double value: emotionvalues){
-                if (emotionsResult.get(key).equals(value)){
-                    sortedEmotionsList.add(key);
+    public void sortHashMap(){
+        ArrayList<Double> sortedEmotionsListValues = new ArrayList<>();
+        sortedEmotionsListValues.add(emotionsResult.get("anger"));
+        sortedEmotionsListValues.add(emotionsResult.get("happiness"));
+        sortedEmotionsListValues.add(emotionsResult.get("sadness"));
+        emotionsValue.put("anger",0);
+        emotionsValue.put("sadness",1);
+        emotionsValue.put("happiness",2);
+
+        Collections.sort(sortedEmotionsListValues,Collections.<Double>reverseOrder());
+        Log.d("Values",""+sortedEmotionsListValues);
+
+        for (Double value:sortedEmotionsListValues){
+            for (String key:emotionsResult.keySet()){
+                if (Double.compare(value,emotionsResult.get(key))==0){
+                    sortedEmotionsList.add(emotionsValue.get(key));
                 }
             }
         }
-
-        for (String sortedEmotions:sortedEmotionsList){
-            Log.d("SortedValues",sortedEmotions);
-        }
-
-        return sortedEmotionsList;
+        Log.d("Sorted List",""+sortedEmotionsList);
     }
 
     private AsyncTask<Void, Void, Void> runAsyncTask(AsyncTask<Void, Void, Void> task) {
@@ -128,6 +133,10 @@ public class MainActivity extends AppCompatActivity {
                                 if (result!=null){
                                     Log.d("Parsed Result",parsedResult);
                                     sortHashMap();
+                                    Intent intent = new Intent(MainActivity.this,ConfirmationActivity.class);
+                                    intent.putExtra("emotion",sortedEmotionsList.get(0));
+                                    intent.putExtra("flowValue",1);
+                                    startActivity(intent);
                                 }
                             }catch (Exception e){
                                 parsedResult = "No emotion Detected!!";

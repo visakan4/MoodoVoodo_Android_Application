@@ -9,26 +9,23 @@
 
     <SeekBar
         android:id="@+id/seekBar"
-        android:layout_width="match_parent"
+        android:layout_width="368dp"
         android:layout_height="24dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:max="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="DuplicateIds" />
+        tools:ignore="DuplicateIds"
+        tools:layout_editor_absoluteX="8dp" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="46dp"
         android:layout_height="45dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,15 +33,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.588"
-        app:srcCompat="@drawable/angry" />
+        app:srcCompat="@drawable/angry"
+        tools:layout_editor_absoluteX="16dp" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,30 +48,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.588"
-        app:srcCompat="@drawable/happy" />
+        app:srcCompat="@drawable/happy"
+        tools:layout_editor_absoluteX="331dp" />
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="46dp"
         android:layout_height="45dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.588"
-        app:srcCompat="@drawable/sad" />
+        app:srcCompat="@drawable/sad"
+        tools:layout_editor_absoluteX="169dp" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="321dp"
         android:layout_height="56dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:fontFamily="cursive"
         android:padding="8dp"
@@ -88,15 +82,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.208"
-        tools:text="@string/user_question" />
+        tools:text="@string/user_question"
+        tools:layout_editor_absoluteX="32dp" />
 
     <ImageButton
         android:id="@+id/nextActBtn"
         android:layout_width="55dp"
         android:layout_height="60dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/ic_navigate_next_black_24dp"
         android:onClick="nextActBtnClick"
@@ -106,6 +99,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.941"
-        app:srcCompat="@drawable/roundedbutton" />
+        app:srcCompat="@drawable/roundedbutton"
+        tools:layout_editor_absoluteX="303dp" />
 
 </android.support.constraint.ConstraintLayout>

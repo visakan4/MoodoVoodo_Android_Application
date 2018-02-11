@@ -25,7 +25,10 @@
         </activity>
         <activity android:name=".UserInput" />
         <activity android:name=".ConfirmationActivity" />
-        <activity android:name=".RecommendationActivity"></activity>
+        <activity android:name=".RecommendationActivity" />
+        <activity android:name=".PlayerActivity"
+            android:screenOrientation="landscape">
+        </activity>
     </application>
 
 </manifest>

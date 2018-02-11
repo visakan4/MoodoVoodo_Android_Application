@@ -1,8 +1,10 @@
 package com.example.visak.hackothonproject;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -20,10 +22,17 @@ public class ConfirmationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmation);
+        Intent intent = getIntent();
         tvQuest = (TextView) findViewById(R.id.tvQuestion);
         btnPositive = (Button) findViewById(R.id.btnPositive);
         btnNegative = (Button) findViewById(R.id.btnNegative);
-        userResponse = UserInput.userInput;
+        if (intent.getExtras().getInt("flowValue")==1){
+            userResponse = intent.getExtras().getInt("emotion");
+            Log.d("EmotionValue",""+userResponse);
+        }
+        else {
+            userResponse = UserInput.userInput;
+        }
 
         if(userResponse == 2){
             //Happy
@@ -53,24 +62,28 @@ public class ConfirmationActivity extends AppCompatActivity {
     }
 
     public void clkPositive(View view) {
-        if (userResponse == 1)
-        {
-            //Write code to play uplifting music
-        }
-        if (userResponse == 0)
-        {
-            //Write code to play soothing music
-        }
+          Intent intent = new Intent(ConfirmationActivity.this,PlayerActivity.class);
+          startActivity(intent);
+//        if (userResponse == 1)
+//        {
+//            //Write code to play uplifting music
+//        }
+//        if (userResponse == 0)
+//        {
+//            //Write code to play soothing music
+//        }
     }
 
     public void clkNegative(View view) {
-        if (userResponse == 1)
-        {
-            //Write code to play sad music
-        }
-        if (userResponse == 0)
-        {
-            //Write code to play heavy, violent music
-        }
+        Intent intent = new Intent(ConfirmationActivity.this,PlayerActivity.class);
+        startActivity(intent);
+//        if (userResponse == 1)
+//        {
+//            //Write code to play sad music
+//        }
+//        if (userResponse == 0)
+//        {
+//            //Write code to play heavy, violent music
+//        }
     }
 }
