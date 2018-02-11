@@ -46,11 +46,9 @@ public class ConfirmationActivity extends AppCompatActivity {
             btnNegative.setVisibility(View.GONE);
             btnPositive.setVisibility(View.GONE);
             //Code to play music
-
             mediaPlayer= MediaPlayer.create(ConfirmationActivity.this, R.raw.happy);
             mediaPlayer.start();
             videoHappyButton.setVisibility(View.VISIBLE);
-
         }
 
         if ((userResponse == 1)){
@@ -66,7 +64,6 @@ public class ConfirmationActivity extends AppCompatActivity {
             tvQuest.setText("Would you like us to lift your spirits?");
             btnNegative.setText("Nah! I want to punch a hole in the wall!");
             btnPositive.setText("Sure. I could use some help!");
-
         }
 
         videoHappyButton.setOnClickListener(new View.OnClickListener() {
@@ -82,28 +79,13 @@ public class ConfirmationActivity extends AppCompatActivity {
     }
 
     public void clkPositive(View view) {
-          Intent intent = new Intent(ConfirmationActivity.this,PlayerActivity.class);
-          startActivity(intent);
-//        if (userResponse == 1)
-//        {
-//            //Write code to play uplifting music
-//        }
-//        if (userResponse == 0)
-//        {
-//            //Write code to play soothing music
-//        }
+        Intent intent = new Intent(ConfirmationActivity.this,PlayerActivity.class);
+        startActivity(intent);
+        userResponse = 2;
     }
 
     public void clkNegative(View view) {
         Intent intent = new Intent(ConfirmationActivity.this,PlayerActivity.class);
         startActivity(intent);
-//        if (userResponse == 1)
-//        {
-//            //Write code to play sad music
-//        }
-//        if (userResponse == 0)
-//        {
-//            //Write code to play heavy, violent music
-//        }
     }
 }
