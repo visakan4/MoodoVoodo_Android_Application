@@ -19,7 +19,7 @@ public class UserInput extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_input);
-
+        Intent intent = getIntent();
         relativeLayout = (ConstraintLayout) findViewById(R.id.relativeLayout);
         tv = (TextView) findViewById(R.id.textView);
         terminalSeekBar = (SeekBar) findViewById(R.id.seekBar);
@@ -35,7 +35,6 @@ public class UserInput extends AppCompatActivity {
 
                  if (i == 0) {
                      relativeLayout.setBackgroundResource(R.color.red);
-
                  }
                  if(i==1){
                      relativeLayout.setBackgroundResource(R.color.blue);
@@ -63,6 +62,7 @@ public class UserInput extends AppCompatActivity {
 
     public void nextActBtnClick(View view) {
         Intent intent = new Intent(getApplicationContext(), ConfirmationActivity.class);
+        intent.putExtra("flowValue",0);
         startActivity(intent);
     }
 }

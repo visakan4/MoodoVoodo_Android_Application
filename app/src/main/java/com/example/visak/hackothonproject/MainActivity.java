@@ -2,6 +2,7 @@ package com.example.visak.hackothonproject;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -10,7 +11,8 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
-import android.support.constraint.ConstraintLayout;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,8 +29,6 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
 
 import cz.msebera.android.httpclient.HttpEntity;
 import cz.msebera.android.httpclient.HttpResponse;
@@ -36,7 +36,6 @@ import cz.msebera.android.httpclient.client.HttpClient;
 import cz.msebera.android.httpclient.client.methods.HttpPost;
 import cz.msebera.android.httpclient.client.utils.URIBuilder;
 import cz.msebera.android.httpclient.entity.ByteArrayEntity;
-import cz.msebera.android.httpclient.entity.StringEntity;
 import cz.msebera.android.httpclient.impl.client.HttpClients;
 import cz.msebera.android.httpclient.util.EntityUtils;
 
@@ -48,25 +47,30 @@ public class MainActivity extends AppCompatActivity {
     String result;
     String parsedResult;
     HashMap<String,Double> emotionsResult = new HashMap<>();
+    HashMap<String,Integer> emotionsValue = new HashMap<>();
+    ArrayList<Integer> sortedEmotionsList = new ArrayList<>();
 
-    public ArrayList<String> sortHashMap(){
-        ArrayList<String> sortedEmotionsList = new ArrayList<>();
-        List<Double> emotionvalues = new ArrayList<>(emotionsResult.values());
 
-        Collections.sort(emotionvalues);
-        for (String key: emotionsResult.keySet()) {
-            for (Double value: emotionvalues){
-                if (emotionsResult.get(key).equals(value)){
-                    sortedEmotionsList.add(key);
+    public void sortHashMap(){
+        ArrayList<Double> sortedEmotionsListValues = new ArrayList<>();
+        sortedEmotionsListValues.add(emotionsResult.get("anger"));
+        sortedEmotionsListValues.add(emotionsResult.get("happiness"));
+        sortedEmotionsListValues.add(emotionsResult.get("sadness"));
+        emotionsValue.put("anger",0);
+        emotionsValue.put("sadness",1);
+        emotionsValue.put("happiness",2);
+
+        Collections.sort(sortedEmotionsListValues,Collections.<Double>reverseOrder());
+        Log.d("Values",""+sortedEmotionsListValues);
+
+        for (Double value:sortedEmotionsListValues){
+            for (String key:emotionsResult.keySet()){
+                if (Double.compare(value,emotionsResult.get(key))==0){
+                    sortedEmotionsList.add(emotionsValue.get(key));
                 }
             }
         }
-
-        for (String sortedEmotions:sortedEmotionsList){
-            Log.d("SortedValues",sortedEmotions);
-        }
-
-        return sortedEmotionsList;
+        Log.d("Sorted List",""+sortedEmotionsList);
     }
 
     private AsyncTask<Void, Void, Void> runAsyncTask(AsyncTask<Void, Void, Void> task) {
@@ -129,6 +133,10 @@ public class MainActivity extends AppCompatActivity {
                                 if (result!=null){
                                     Log.d("Parsed Result",parsedResult);
                                     sortHashMap();
+                                    Intent intent = new Intent(MainActivity.this,ConfirmationActivity.class);
+                                    intent.putExtra("emotion",sortedEmotionsList.get(0));
+                                    intent.putExtra("flowValue",1);
+                                    startActivity(intent);
                                 }
                             }catch (Exception e){
                                 parsedResult = "No emotion Detected!!";
@@ -187,6 +195,14 @@ public class MainActivity extends AppCompatActivity {
         cameraIntent = (Button)findViewById(R.id.cameraIntent);
         userInputIntent = (Button)findViewById(R.id.userIntent);
 
+        if (ContextCompat.checkSelfPermission(getApplicationContext(),Manifest.permission.CAMERA)== PackageManager.PERMISSION_DENIED){
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CAMERA},100);
+        }
+
+        if (ContextCompat.checkSelfPermission(getApplicationContext(),Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED){
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},0x3);
+        }
+
 
         cameraIntent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -203,5 +219,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 }
