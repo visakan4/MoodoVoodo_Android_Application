@@ -6,8 +6,9 @@ MoodoVoodo is an Android application which would play songs based on the user em
 
 ## Technologies
 
-Language: Java
-Tools: Android Studio, Youtube API, Microsoft Emotion API
+**Language:** Java
+
+**Tools:** Android Studio, Youtube API, Microsoft Emotion API
 
 ## Setup
 
