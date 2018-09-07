@@ -1,1 +1,7 @@
-# hackathon_project
+# MoodoVoodo
+
+## Project summary
+
+
+## Setup
+
